@@ -60,13 +60,13 @@
 <body>
 
 <div class="container">
-    <h1>Tarde 16.54</h1>
+    <h1>17.04</h1>
     <img id="randomImage" src="https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
-        <a id="downloadBtn" class="icon-btn" download>
+        <button id="downloadBtn" class="icon-btn">
             <i class="fas fa-download"></i> <!-- Icono de descargar -->
-        </a>
+        </button>
     </div>
 </div>
 
@@ -89,21 +89,32 @@
     function showRandomImage() {
         const randomIndex = Math.floor(Math.random() * imageUrls.length);
         const imageElement = document.getElementById('randomImage');
-        const downloadBtn = document.getElementById('downloadBtn');
-        
         const selectedImageUrl = imageUrls[randomIndex];
         
         // Actualiza la imagen aleatoria mostrada
         imageElement.src = selectedImageUrl;
 
-        // Actualiza el botón de descarga con el enlace de la imagen
-        downloadBtn.href = selectedImageUrl;
-
         return selectedImageUrl;
     }
 
+    // Forzar la descarga de la imagen al hacer clic en el botón de descargar
+    function forceDownload(url) {
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.setAttribute('download', 'imagen-aleatoria.jpg'); // Nombre con el que se descargará la imagen
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+    }
+
     // Llamada inicial para mostrar una imagen aleatoria al cargar la página
-    showRandomImage();
+    const currentImageUrl = showRandomImage();
+
+    // Función del botón de descargar
+    const downloadButton = document.getElementById('downloadBtn');
+    downloadButton.addEventListener('click', function() {
+        forceDownload(currentImageUrl); // Llama a la función que forzará la descarga
+    });
 </script>
 
 </body>
