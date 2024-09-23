@@ -71,21 +71,18 @@
 <body>
 
 <div class="container">
-    <h1>Imagen Aleatoria</h1>
+    <h1>Evolucion tarde 16.35</h1>
     <img id="randomImage" src="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
-        <button id="shareBtn" class="icon-btn hidden">
+        <button id="shareBtn" class="icon-btn">
             <i class="fas fa-share-alt"></i> <!-- Icono de compartir -->
-        </button>
-        <button id="copyLinkBtn" class="icon-btn hidden">
-            <i class="fas fa-link"></i> <!-- Icono de copiar enlace -->
         </button>
     </div>
 </div>
 
 <script>
-    // URLs de imágenes alojadas en tu repositorio
+    // URLs de imágenes alojadas en tu repositorio de GitHub
     const imageUrls = [
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v166.jpg?raw=true',
@@ -97,7 +94,6 @@
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v172.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v173.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v174.jpg?raw=true',
-    
     ];
 
     // Selecciona una imagen aleatoria y la muestra
@@ -105,47 +101,29 @@
         const randomIndex = Math.floor(Math.random() * imageUrls.length);
         const imageElement = document.getElementById('randomImage');
         imageElement.src = imageUrls[randomIndex];
-
-        // Actualiza las etiquetas Open Graph dinámicamente (esto no funcionará para compartir pero lo mantendremos en caso de necesidad futura)
-        document.querySelector('meta[property="og:image"]').setAttribute("content", imageUrls[randomIndex]);
-
         return imageUrls[randomIndex];
     }
 
     // Llamada inicial para mostrar una imagen aleatoria al cargar la página
     const currentImageUrl = showRandomImage();
 
-    // Verifica si el navegador soporta la API de compartir
-    if (navigator.share) {
-        const shareButton = document.getElementById('shareBtn');
-        shareButton.classList.remove('hidden');
-        shareButton.addEventListener('click', function() {
+    // Funcionalidad del botón de compartir utilizando la API 'navigator.share()'
+    const shareButton = document.getElementById('shareBtn');
+    shareButton.addEventListener('click', function() {
+        if (navigator.share) {
             navigator.share({
-                title: 'Mira esta imagen',
-                text: '¡Echa un vistazo a esta imagen increíble!',
+                title: 'Mira esta imagen increíble',
+                text: '¡Echa un vistazo a esta imagen!',
                 url: currentImageUrl
             }).then(() => {
-                console.log('Contenido compartido con éxito');
+                console.log('Compartido con éxito.');
             }).catch((error) => {
                 console.error('Error al compartir:', error);
             });
-        });
-    } else {
-        // Si la API no es soportada, muestra el botón de copiar enlace
-        const copyLinkButton = document.getElementById('copyLinkBtn');
-        copyLinkButton.classList.remove('hidden');
-        copyLinkButton.addEventListener('click', function() {
-            // Crea un elemento de input temporal para copiar el enlace
-            const tempInput = document.createElement('input');
-            document.body.appendChild(tempInput);
-            tempInput.value = currentImageUrl;
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            alert('Enlace de la imagen copiado al portapapeles.');
-        });
-    }
-
+        } else {
+            alert('La función de compartir no está disponible en este navegador.');
+        }
+    });
 </script>
 
 </body>
