@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagen Aleatoria</title>
+
+    <!-- Etiquetas Open Graph para compartir la imagen en redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mira esta imagen increíble">
+    <meta property="og:description" content="¡Echa un vistazo a esta imagen que encontré!">
+    <meta property="og:image" content="https://example.com/imagen1.jpg"> <!-- Cambia a la URL dinámica de la imagen -->
+    <meta property="og:url" content=""> <!-- Cambia a la URL de tu página -->
+
+    <!-- Cargar los íconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .icon-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .icon-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #4CAF50;
+            transition: color 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Verso</h1>
+    <img id="randomImage" src="https://example.com/imagen1.jpg" alt="Imagen aleatoria"> <!-- Actualiza con la imagen aleatoria -->
+    <br>
+    <div class="icon-buttons">
+        <button id="shareBtn" class="icon-btn hidden">
+            <i class="fas fa-share-alt"></i> <!-- Icono de compartir -->
+        </button>
+        <button id="copyLinkBtn" class="icon-btn hidden">
+            <i class="fas fa-link"></i> <!-- Icono de copiar enlace -->
+        </button>
+    </div>
+</div>
+
+<script>
+    // URLs de imágenes alojadas en un servidor externo
+    const imageUrls = [
+    'https://github.com/BIBLIASYESTUDIOS/versosdiariosesp/blob/main/v1.jpg?raw=true',
+        'https://github.com/BIBLIASYESTUDIOS/versosdiariosesp/blob/main/v2.jpg?raw=true',
+        'https://github.com/BIBLIASYESTUDIOS/versosdiariosesp/blob/main/v3.jpg?raw=true',
+        'https://github.com/BIBLIASYESTUDIOS/versosdiariosesp/blob/main/v4.jpg?raw=true'
+    ];
+
+    // Selecciona una imagen aleatoria y la muestra
+    function showRandomImage() {
+        const randomIndex = Math.floor(Math.random() * imageUrls.length);
+        const imageElement = document.getElementById('randomImage');
+        imageElement.src = imageUrls[randomIndex];
+
+        // Actualiza las etiquetas OG dinámicamente
+        document.querySelector('meta[property="og:image"]').setAttribute("content", imageUrls[randomIndex]);
+
+        return imageUrls[randomIndex];
+    }
+
+    // Llamada inicial para mostrar una imagen aleatoria al cargar la página
+    const currentImageUrl = showRandomImage();
+
+    // Verifica si el navegador soporta la API de compartir
+    if (navigator.share) {
+        const shareButton = document.getElementById('shareBtn');
+        shareButton.classList.remove('hidden');
+        shareButton.addEventListener('click', function() {
+            navigator.share({
+                title: 'Mira esta imagen',
+                text: '¡Echa un vistazo a esta imagen increíble!',
+                url: currentImageUrl
+            }).then(() => {
+                console.log('Contenido compartido con éxito');
+            }).catch((error) => {
+                console.error('Error al compartir:', error);
+            });
+        });
+    } else {
+        // Si la API no es soportada, muestra el botón de copiar enlace
+        const copyLinkButton = document.getElementById('copyLinkBtn');
+        copyLinkButton.classList.remove('hidden');
+        copyLinkButton.addEventListener('click', function() {
+            // Crea un elemento de input temporal para copiar el enlace
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = currentImageUrl;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Enlace de la imagen copiado al portapapeles.');
+        });
+    }
+
+</script>
+
+</body>
+</html>
