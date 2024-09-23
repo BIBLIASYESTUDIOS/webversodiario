@@ -21,7 +21,7 @@
 
         .container {
             text-align: center;
-            background-color: #fff;
+            background-color: #c6d8eb;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -60,70 +60,222 @@
 <body>
 
 <div class="container">
-    <h1>18.05</h1>
-    <img id="randomImage" src="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
+    <h1>Versículo del Dia</h1>
+    <img id="randomImage" src="https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
-        <button id="downloadBtn" class="icon-btn">
+        <a id="downloadBtn" class="icon-btn" download>
             <i class="fas fa-download"></i> <!-- Icono de descargar -->
-        </button>
+        </a>
     </div>
 </div>
+ <!-- Enlace a Google Fonts para la fuente bíblica -->
+ <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
 
+ <style>
+     /* Aplicar la fuente bíblica solo a los botones */
+     button.accordion {
+         font-family: 'Uncial Antiqua', serif;
+     }
+ </style>
 <script>
     // URLs de imágenes alojadas en tu repositorio de GitHub
     const imageUrls = [
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v166.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v167.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v168.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v169.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v170.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v171.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v172.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v173.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v174.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v1.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v2.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v3.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v4.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v5.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v6.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v7.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v8.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v9.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v10.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v11.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v12.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v13.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v14.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v15.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v16.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v17.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v18.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v19.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v20.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v21.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v22.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v23.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v24.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v25.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v26.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v27.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v28.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v29.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v30.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v31.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v32.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v33.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v34.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v35.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v36.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v37.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v38.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v39.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v40.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v41.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v42.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v43.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v44.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v45.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v46.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v47.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v48.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v49.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v50.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v51.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v52.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v53.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v54.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v55.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v56.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v57.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v58.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v59.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v60.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v61.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v62.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v63.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v64.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v65.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v66.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v67.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v68.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v69.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v70.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v71.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v72.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v73.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v74.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v75.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v76.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v77.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v78.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v79.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v80.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v81.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v82.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v83.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v84.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v85.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v86.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v87.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v88.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v89.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v90.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v91.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v92.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v93.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v94.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v95.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v96.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v97.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v98.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v99.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v100.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v101.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v102.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v103.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v104.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v105.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v106.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v107.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v108.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v109.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v110.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v111.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v112.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v113.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v114.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v115.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v116.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v117.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v118.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v119.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v120.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v121.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v122.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v123.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v124.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v125.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v126.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v127.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v128.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v129.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v130.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v131.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v132.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v133.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v134.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v135.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v136.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v137.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v138.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v139.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v140.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v141.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v142.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v143.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v144.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v145.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v146.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v147.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v148.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v149.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v150.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v151.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v152.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v153.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v154.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v155.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v156.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v157.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v158.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v159.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v160.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v161.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v162.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v163.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v164.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v166.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v167.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v168.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v169.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v170.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v171.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v172.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v173.jpg?raw=true',
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v174.jpg?raw=true'
     ];
 
     // Selecciona una imagen aleatoria y la muestra
     function showRandomImage() {
         const randomIndex = Math.floor(Math.random() * imageUrls.length);
         const imageElement = document.getElementById('randomImage');
+        const downloadBtn = document.getElementById('downloadBtn');
+        
         const selectedImageUrl = imageUrls[randomIndex];
         
         // Actualiza la imagen aleatoria mostrada
         imageElement.src = selectedImageUrl;
 
+        // Actualiza el botón de descarga con el enlace de la imagen
+        downloadBtn.href = selectedImageUrl;
+
         return selectedImageUrl;
     }
 
-    // Descarga la imagen como Blob y fuerza su descarga
-    function downloadImage(url) {
-        fetch(url, {
-            mode: 'cors' // Importante para evitar problemas de CORS
-        })
-        .then(response => response.blob()) // Convierte la respuesta en un blob
-        .then(blob => {
-            const blobUrl = URL.createObjectURL(blob); // Crea una URL para el blob
-            const a = document.createElement('a'); // Crea un enlace
-            a.href = blobUrl;
-            a.download = 'imagen-aleatoria.jpg'; // Nombre del archivo descargado
-            document.body.appendChild(a);
-            a.click(); // Simula el clic para forzar la descarga
-            document.body.removeChild(a); // Elimina el enlace después de descargar
-            URL.revokeObjectURL(blobUrl); // Libera el blob de la memoria
-        })
-        .catch(error => console.error('Error al descargar la imagen:', error));
-    }
-
     // Llamada inicial para mostrar una imagen aleatoria al cargar la página
-    const currentImageUrl = showRandomImage();
-
-    // Función del botón de descargar
-    const downloadButton = document.getElementById('downloadBtn');
-    downloadButton.addEventListener('click', function() {
-        downloadImage(currentImageUrl); // Llama a la función que descarga la imagen como Blob
-    });
+    showRandomImage();
 </script>
 
 </body>
