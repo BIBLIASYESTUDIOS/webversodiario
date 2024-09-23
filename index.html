@@ -60,20 +60,20 @@
 <body>
 
 <div class="container">
-    <h1>18</h1>
-    <img id="randomImage" src="https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
+    <h1>18.05</h1>
+    <img id="randomImage" src="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
-        <a id="downloadBtn" class="icon-btn" href="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" download="imagen-aleatoria.jpg">
+        <button id="downloadBtn" class="icon-btn">
             <i class="fas fa-download"></i> <!-- Icono de descargar -->
-        </a>
+        </button>
     </div>
 </div>
 
 <script>
     // URLs de imágenes alojadas en tu repositorio de GitHub
     const imageUrls = [
-         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
+        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v166.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v167.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v168.jpg?raw=true',
@@ -89,19 +89,41 @@
     function showRandomImage() {
         const randomIndex = Math.floor(Math.random() * imageUrls.length);
         const imageElement = document.getElementById('randomImage');
-        const downloadBtn = document.getElementById('downloadBtn');
-        
         const selectedImageUrl = imageUrls[randomIndex];
         
         // Actualiza la imagen aleatoria mostrada
         imageElement.src = selectedImageUrl;
 
-        // Actualiza el botón de descarga con la nueva URL de la imagen seleccionada
-        downloadBtn.href = selectedImageUrl;
+        return selectedImageUrl;
+    }
+
+    // Descarga la imagen como Blob y fuerza su descarga
+    function downloadImage(url) {
+        fetch(url, {
+            mode: 'cors' // Importante para evitar problemas de CORS
+        })
+        .then(response => response.blob()) // Convierte la respuesta en un blob
+        .then(blob => {
+            const blobUrl = URL.createObjectURL(blob); // Crea una URL para el blob
+            const a = document.createElement('a'); // Crea un enlace
+            a.href = blobUrl;
+            a.download = 'imagen-aleatoria.jpg'; // Nombre del archivo descargado
+            document.body.appendChild(a);
+            a.click(); // Simula el clic para forzar la descarga
+            document.body.removeChild(a); // Elimina el enlace después de descargar
+            URL.revokeObjectURL(blobUrl); // Libera el blob de la memoria
+        })
+        .catch(error => console.error('Error al descargar la imagen:', error));
     }
 
     // Llamada inicial para mostrar una imagen aleatoria al cargar la página
-    showRandomImage();
+    const currentImageUrl = showRandomImage();
+
+    // Función del botón de descargar
+    const downloadButton = document.getElementById('downloadBtn');
+    downloadButton.addEventListener('click', function() {
+        downloadImage(currentImageUrl); // Llama a la función que descarga la imagen como Blob
+    });
 </script>
 
 </body>
