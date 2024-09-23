@@ -60,20 +60,20 @@
 <body>
 
 <div class="container">
-    <h1>17.30</h1>
-    <img id="randomImage" src="https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
+    <h1>Imagen Aleatoria</h1>
+    <img id="randomImage" src="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
-        <button id="downloadBtn" class="icon-btn">
+        <a id="downloadBtn" class="icon-btn" href="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" download="imagen-aleatoria.jpg">
             <i class="fas fa-download"></i> <!-- Icono de descargar -->
-        </button>
+        </a>
     </div>
 </div>
 
 <script>
     // URLs de imágenes alojadas en tu repositorio de GitHub
     const imageUrls = [
-       'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
+         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v166.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v167.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v168.jpg?raw=true',
@@ -89,51 +89,19 @@
     function showRandomImage() {
         const randomIndex = Math.floor(Math.random() * imageUrls.length);
         const imageElement = document.getElementById('randomImage');
+        const downloadBtn = document.getElementById('downloadBtn');
+        
         const selectedImageUrl = imageUrls[randomIndex];
         
         // Actualiza la imagen aleatoria mostrada
         imageElement.src = selectedImageUrl;
 
-        return selectedImageUrl;
-    }
-
-    // Convierte la imagen a base64 y descarga
-    function downloadImageAsBase64(url) {
-        const img = new Image();
-        img.crossOrigin = 'anonymous'; // Permite obtener la imagen de un dominio externo
-
-        img.onload = function () {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-
-            // Convertir la imagen a base64
-            const dataURL = canvas.toDataURL('image/jpeg'); 
-
-            // Crear un enlace temporal para descargar la imagen
-            const a = document.createElement('a');
-            a.href = dataURL;
-            a.download = 'imagen-aleatoria.jpg'; // Nombre del archivo descargado
-            document.body.appendChild(a);
-            a.click(); // Simula el clic para forzar la descarga
-            document.body.removeChild(a); // Elimina el enlace después de descargar
-        };
-
-        // Asigna la URL de la imagen para que cargue
-        img.src = url;
+        // Actualiza el botón de descarga con la nueva URL de la imagen seleccionada
+        downloadBtn.href = selectedImageUrl;
     }
 
     // Llamada inicial para mostrar una imagen aleatoria al cargar la página
-    const currentImageUrl = showRandomImage();
-
-    // Función del botón de descargar
-    const downloadButton = document.getElementById('downloadBtn');
-    downloadButton.addEventListener('click', function() {
-        downloadImageAsBase64(currentImageUrl); // Llama a la función que descarga la imagen como base64
-    });
+    showRandomImage();
 </script>
 
 </body>
