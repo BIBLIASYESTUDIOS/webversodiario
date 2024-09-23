@@ -9,8 +9,8 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Mira esta imagen increíble">
     <meta property="og:description" content="¡Echa un vistazo a esta imagen que encontré!">
-    <meta property="og:image" content="https://example.com/imagen1.jpg"> <!-- Cambia a la URL dinámica de la imagen -->
-    <meta property="og:url" content="https://example.com/mi-pagina"> <!-- Cambia a la URL de tu página -->
+    <meta property="og:image" content="https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true"> <!-- URL de una de tus imágenes -->
+    <meta property="og:url" content="https://bibliasyestudios.github.io/webversodiario/"> <!-- URL de tu página de GitHub Pages -->
 
     <!-- Cargar los íconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -71,8 +71,8 @@
 <body>
 
 <div class="container">
-    <h1>Versículo Bíblico Kadosh</h1>
-    <img id="randomImage" src="https://example.com/imagen1.jpg" alt="Imagen aleatoria"> <!-- Actualiza con la imagen aleatoria -->
+    <h1>Imagen Aleatoria</h1>
+    <img id="randomImage" src="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
         <button id="shareBtn" class="icon-btn hidden">
@@ -85,7 +85,7 @@
 </div>
 
 <script>
-    // URLs de imágenes alojadas en un servidor externo
+    // URLs de imágenes alojadas en tu repositorio
     const imageUrls = [
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v166.jpg?raw=true',
@@ -96,7 +96,8 @@
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v171.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v172.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v173.jpg?raw=true',
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v174.jpg?raw=true'
+        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v174.jpg?raw=true',
+    
     ];
 
     // Selecciona una imagen aleatoria y la muestra
@@ -105,7 +106,7 @@
         const imageElement = document.getElementById('randomImage');
         imageElement.src = imageUrls[randomIndex];
 
-        // Actualiza las etiquetas OG dinámicamente
+        // Actualiza las etiquetas Open Graph dinámicamente (esto no funcionará para compartir pero lo mantendremos en caso de necesidad futura)
         document.querySelector('meta[property="og:image"]').setAttribute("content", imageUrls[randomIndex]);
 
         return imageUrls[randomIndex];
