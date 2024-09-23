@@ -5,13 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imagen Aleatoria</title>
 
-    <!-- Etiquetas Open Graph para compartir la imagen en redes sociales -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Mira esta imagen increíble">
-    <meta property="og:description" content="¡Echa un vistazo a esta imagen que encontré!">
-    <meta property="og:image" content="https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true"> <!-- URL de una de tus imágenes -->
-    <meta property="og:url" content="https://bibliasyestudios.github.io/webversodiario/"> <!-- URL de tu página de GitHub Pages -->
-
     <!-- Cargar los íconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -62,22 +55,18 @@
         .icon-btn:hover {
             color: #45a049;
         }
-
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Evolucion tarde 16.35</h1>
+    <h1>Imagen Aleatoria</h1>
     <img id="randomImage" src="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
-        <button id="shareBtn" class="icon-btn">
-            <i class="fas fa-share-alt"></i> <!-- Icono de compartir -->
-        </button>
+        <a id="downloadBtn" class="icon-btn" download>
+            <i class="fas fa-download"></i> <!-- Icono de descargar -->
+        </a>
     </div>
 </div>
 
@@ -100,30 +89,21 @@
     function showRandomImage() {
         const randomIndex = Math.floor(Math.random() * imageUrls.length);
         const imageElement = document.getElementById('randomImage');
-        imageElement.src = imageUrls[randomIndex];
-        return imageUrls[randomIndex];
+        const downloadBtn = document.getElementById('downloadBtn');
+        
+        const selectedImageUrl = imageUrls[randomIndex];
+        
+        // Actualiza la imagen aleatoria mostrada
+        imageElement.src = selectedImageUrl;
+
+        // Actualiza el botón de descarga con el enlace de la imagen
+        downloadBtn.href = selectedImageUrl;
+
+        return selectedImageUrl;
     }
 
     // Llamada inicial para mostrar una imagen aleatoria al cargar la página
-    const currentImageUrl = showRandomImage();
-
-    // Funcionalidad del botón de compartir utilizando la API 'navigator.share()'
-    const shareButton = document.getElementById('shareBtn');
-    shareButton.addEventListener('click', function() {
-        if (navigator.share) {
-            navigator.share({
-                title: 'Mira esta imagen increíble',
-                text: '¡Echa un vistazo a esta imagen!',
-                url: currentImageUrl
-            }).then(() => {
-                console.log('Compartido con éxito.');
-            }).catch((error) => {
-                console.error('Error al compartir:', error);
-            });
-        } else {
-            alert('La función de compartir no está disponible en este navegador.');
-        }
-    });
+    showRandomImage();
 </script>
 
 </body>
