@@ -60,8 +60,8 @@
 <body>
 
 <div class="container">
-    <h1>Blob</h1>
-    <img id="randomImage" src="https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
+    <h1>17.25</h1>
+    <img id="randomImage" src="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
         <button id="downloadBtn" class="icon-btn">
@@ -73,7 +73,7 @@
 <script>
     // URLs de imágenes alojadas en tu repositorio de GitHub
     const imageUrls = [
-        'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
+       'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v166.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v167.jpg?raw=true',
         'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v168.jpg?raw=true',
@@ -97,21 +97,33 @@
         return selectedImageUrl;
     }
 
-    // Descarga la imagen como Blob y fuerza su descarga
-    function downloadImage(url) {
-        fetch(url)
-            .then(response => response.blob()) // Convierte la respuesta en un blob
-            .then(blob => {
-                const blobUrl = URL.createObjectURL(blob); // Crea una URL para el blob
-                const a = document.createElement('a'); // Crea un enlace
-                a.href = blobUrl;
-                a.download = 'imagen-aleatoria.jpg'; // Nombre del archivo descargado
-                document.body.appendChild(a);
-                a.click(); // Simula el clic para forzar la descarga
-                document.body.removeChild(a); // Elimina el enlace después de descargar
-                URL.revokeObjectURL(blobUrl); // Libera el blob de la memoria
-            })
-            .catch(error => console.error('Error al descargar la imagen:', error));
+    // Convierte la imagen a base64 y descarga
+    function downloadImageAsBase64(url) {
+        const img = new Image();
+        img.crossOrigin = 'anonymous'; // Permite obtener la imagen de un dominio externo
+
+        img.onload = function () {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+
+            // Convertir la imagen a base64
+            const dataURL = canvas.toDataURL('image/jpeg'); 
+
+            // Crear un enlace temporal para descargar la imagen
+            const a = document.createElement('a');
+            a.href = dataURL;
+            a.download = 'imagen-aleatoria.jpg'; // Nombre del archivo descargado
+            document.body.appendChild(a);
+            a.click(); // Simula el clic para forzar la descarga
+            document.body.removeChild(a); // Elimina el enlace después de descargar
+        };
+
+        // Asigna la URL de la imagen para que cargue
+        img.src = url;
     }
 
     // Llamada inicial para mostrar una imagen aleatoria al cargar la página
@@ -120,7 +132,7 @@
     // Función del botón de descargar
     const downloadButton = document.getElementById('downloadBtn');
     downloadButton.addEventListener('click', function() {
-        downloadImage(currentImageUrl); // Llama a la función que descarga la imagen como Blob
+        downloadImageAsBase64(currentImageUrl); // Llama a la función que descarga la imagen como base64
     });
 </script>
 
