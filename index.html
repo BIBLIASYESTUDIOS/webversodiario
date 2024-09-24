@@ -21,7 +21,7 @@
 
         .container {
             text-align: center;
-            background-color: #daceba;
+            background-color: #fff;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -60,24 +60,16 @@
 <body>
 
 <div class="container">
-    <h1>Versículo del Dia</h1>
-    <img id="randomImage" src="https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v165.jpg?raw=true" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
+    <h1>Imagen Aleatoria</h1>
+    <img id="randomImage" src="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
-        <a id="downloadBtn" class="icon-btn" download>
+        <button id="downloadBtn" class="icon-btn">
             <i class="fas fa-download"></i> <!-- Icono de descargar -->
-        </a>
+        </button>
     </div>
 </div>
- <!-- Enlace a Google Fonts para la fuente bíblica -->
- <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
 
- <style>
-     /* Aplicar la fuente bíblica solo a los botones */
-     button.accordion {
-         font-family: 'Uncial Antiqua', serif;
-     }
- </style>
 <script>
     // URLs de imágenes alojadas en tu repositorio de GitHub
     const imageUrls = [
@@ -254,28 +246,60 @@
 'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v171.jpg?raw=true',
 'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v172.jpg?raw=true',
 'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v173.jpg?raw=true',
-'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v174.jpg?raw=true'
+'https://github.com/BIBLIASYESTUDIOS/webversodiario/blob/main/v174.jpg?raw=true',
     ];
 
     // Selecciona una imagen aleatoria y la muestra
     function showRandomImage() {
         const randomIndex = Math.floor(Math.random() * imageUrls.length);
         const imageElement = document.getElementById('randomImage');
-        const downloadBtn = document.getElementById('downloadBtn');
-        
         const selectedImageUrl = imageUrls[randomIndex];
         
         // Actualiza la imagen aleatoria mostrada
         imageElement.src = selectedImageUrl;
 
-        // Actualiza el botón de descarga con el enlace de la imagen
-        downloadBtn.href = selectedImageUrl;
-
         return selectedImageUrl;
     }
 
+    // Función para forzar la descarga de la imagen usando canvas
+    function downloadImage(url) {
+        const img = new Image();
+        img.crossOrigin = 'anonymous'; // Importante para manejar CORS
+        img.src = url;
+
+        img.onload = function () {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+
+            // Convierte el contenido del canvas en un DataURL (base64)
+            const dataURL = canvas.toDataURL('image/jpeg');
+
+            // Crear un enlace temporal para forzar la descarga
+            const a = document.createElement('a');
+            a.href = dataURL;
+            a.download = 'imagen-aleatoria.jpg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a); // Elimina el enlace temporal
+        };
+
+        img.onerror = function() {
+            console.error('Error al cargar la imagen.');
+        };
+    }
+
     // Llamada inicial para mostrar una imagen aleatoria al cargar la página
-    showRandomImage();
+    const currentImageUrl = showRandomImage();
+
+    // Función del botón de descargar
+    const downloadButton = document.getElementById('downloadBtn');
+    downloadButton.addEventListener('click', function() {
+        downloadImage(currentImageUrl); // Llama a la función que descarga la imagen usando canvas
+    });
 </script>
 
 </body>
