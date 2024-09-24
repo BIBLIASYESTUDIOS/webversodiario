@@ -27,6 +27,7 @@
             padding: 20px;
             max-width: 90%;
             max-height: 90%;
+             font-family: 'Uncial Antiqua', serif;
         }
 
         img {
@@ -60,7 +61,7 @@
 <body>
 
 <div class="container">
-    <h1>Imagen 1</h1>
+    <h1>Frase del Día</h1>
     <img id="randomImage" src="https://tu-usuario.github.io/mi-repositorio/imagen1.jpg" alt="Imagen aleatoria"> <!-- Imagen aleatoria -->
     <br>
     <div class="icon-buttons">
@@ -69,7 +70,15 @@
         </button>
     </div>
 </div>
+  <!-- Enlace a Google Fonts para la fuente bíblica -->
+     <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
 
+     <style>
+         /* Aplicar la fuente bíblica solo a los botones */
+         button.accordion {
+             font-family: 'Uncial Antiqua', serif;
+         }
+     </style>
 <script>
     // URLs de imágenes alojadas en tu repositorio de GitHub
     const imageUrls = [
